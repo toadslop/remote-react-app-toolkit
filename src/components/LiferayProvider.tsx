@@ -8,9 +8,8 @@ type Props = {
 
 const LiferayProvider: VFC<Props> = (props) => {
     const { elementId, children } = props;
-    const [root, setRoot] = useState<Element>();
+    const [rootElement, setRootElement] = useState<Element>(getAppRootElement(elementId));
     const nodeRef = useRef(null);
-    setRoot(getAppRootElement(elementId));
 
     return (
         <div ref={nodeRef}>{children}</div>
