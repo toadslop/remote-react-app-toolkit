@@ -1,15 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavigateOptions, useLocation, useNavigate } from "react-router-dom";
 import { getBaseUrl } from "../utils";
 
 export function useLiferayNavigate() {
   const { pathname } = useLocation();
   const _navigate = useNavigate();
 
-  return (url: string) => {
+  return (path: string, options?: NavigateOptions) => {
     const base = getBaseUrl(pathname);
-
-    _navigate(`${base}${url}`, {
-      replace: true,
-    });
+    const url = new URL(path, base);
+    _navigate(url.pathname, options);
   };
 }
