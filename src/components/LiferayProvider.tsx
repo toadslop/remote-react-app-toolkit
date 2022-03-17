@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useState, VFC } from 'react'
+import React, { ReactNode, useState, VFC } from 'react'
 import { getAppRootElement } from '../utils';
 
 type Props = {
@@ -9,10 +9,9 @@ type Props = {
 const LiferayProvider: VFC<Props> = (props) => {
     const { elementId, children } = props;
     const [rootElement, setRootElement] = useState<Element>(getAppRootElement(elementId));
-    const nodeRef = useRef(null);
 
     return (
-        <div ref={nodeRef}>{children}</div>
+        <>{children}</>
     )
 }
 
