@@ -1,0 +1,24 @@
+{
+  "name": "remote-react-app-toolkit",
+  "version": "0.1.0",
+  "description": "A set of tools to streamline building remote apps for Liferay DXP 7.4 using React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toadslop/remote-react-app-toolkit.git"
+  },
+  "keywords": [
+    "Liferay",
+    "React",
+    "Remote App"
+  ],
+  "author": "Brian Heise",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/toadslop/remote-react-app-toolkit/issues"
+  },
+  "homepage": "https://github.com/toadslop/remote-react-app-toolkit#readme"
+}
