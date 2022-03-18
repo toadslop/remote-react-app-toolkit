@@ -12,6 +12,7 @@ export default [
     external: [
       'react',
       'react-dom',
+      'react-router-dom'
     ],
     output: [
       {
