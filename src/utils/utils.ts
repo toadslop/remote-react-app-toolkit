@@ -1,16 +1,5 @@
-import { ElementError } from "./errors";
-
-const { NODE_ENV } = process.env;
-
-export const getAppRootElement = (elementId: string) => {
-  const root = document.getElementsByTagName(elementId);
-  if (root.length === 0)
-    throw new ElementError(
-      `Liferay React Provider was provided elementId "${elementId}" but could not find such an element.`
-    );
-
-  return root[0];
-};
+export const getAppRootElement = (elementId: string) =>
+  document.getElementsByTagName(elementId)[0];
 
 /**
  * Takes a URL as an input and returns everything up to /-/, which is Liferay's
@@ -25,3 +14,26 @@ export const getBaseUrl = (pathname: string) => {
     pathname.indexOf("/-") === -1 ? pathname.length : pathname.indexOf("/-");
   return `${pathname.substring(0, subdashIndex)}/-/`;
 };
+
+export interface Attributes {
+  [key: string]: string;
+}
+
+export const getAppProperties = (rootElement: Element) =>
+  rootElement.getAttributeNames().reduce(toAttrObj(rootElement), {});
+
+const toAttrObj =
+  (rootElement: Element) => (attrObj: Attributes, attrName: string) => {
+    const attrValue = rootElement.getAttribute(attrName);
+    if (attrValue) attrObj[attrName] = attrValue;
+    return attrObj;
+  };
+
+export const findMissingProps = (
+  requiredProperties: string[],
+  presentProperties: Attributes
+) =>
+  requiredProperties.reduce((arr: string[], prop) => {
+    if (!(prop.toLocaleLowerCase() in presentProperties)) arr.push(prop);
+    return arr;
+  }, []);
