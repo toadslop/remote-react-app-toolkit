@@ -1,20 +1,18 @@
-import { AttributeError } from "./errors";
+import { ElementError } from "./errors";
 
 const { NODE_ENV } = process.env;
 
 export const getAppRootElement = (elementId: string) => {
   const root = document.getElementsByTagName(elementId);
 
-  if (NODE_ENV === "development") {
-    if (root.length === 0)
-      throw new AttributeError(
-        `Liferay React Provider was provided elementId "${elementId}" but could not find such an element.`
-      );
-    if (root.length > 1)
-      throw new AttributeError(
-        `The element ID should be unique but multiple elements with elementID "${elementId}" were found.`
-      );
-  }
+  if (root.length === 0)
+    throw new ElementError(
+      `Liferay React Provider was provided elementId "${elementId}" but could not find such an element.`
+    );
+  if (root.length > 1)
+    throw new ElementError(
+      `The element ID should be unique but multiple elements with elementID "${elementId}" were found.`
+    );
 
   return root[0];
 };

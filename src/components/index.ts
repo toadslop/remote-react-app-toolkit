@@ -1,1 +1,1 @@
-export { default } from "./LiferayProvider";
+export { default as LiferayProvider } from "./LiferayProvider";
