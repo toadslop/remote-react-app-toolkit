@@ -1,5 +1,5 @@
 // errors
-export { AttributeError } from "./errors";
+export { ElementError } from "./errors";
 
 // utils
 export { getAppRootElement } from "./utils";
