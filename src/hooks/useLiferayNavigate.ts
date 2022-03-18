@@ -3,11 +3,9 @@ import { getBaseUrl } from "../utils";
 
 export function useLiferayNavigate() {
   const { pathname } = useLocation();
-  const _navigate = useNavigate();
-
+  const navigate = useNavigate();
   return (path: string, options?: NavigateOptions) => {
     const base = getBaseUrl(pathname);
-    const url = new URL(path, base);
-    _navigate(url.pathname, options);
+    navigate(`${base}${path}`, options);
   };
 }
