@@ -1,0 +1,2 @@
+export const REMOTE_APP_PORTLET_KEY =
+  "portlet_com_liferay_remote_app_web_internal_portlet_RemoteAppEntryPortlet";

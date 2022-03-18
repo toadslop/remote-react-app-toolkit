@@ -1,3 +1,5 @@
+import { REMOTE_APP_PORTLET_KEY } from "./constants";
+
 export const getAppRootElement = (elementId: string) =>
   document.getElementsByTagName(elementId)[0];
 
@@ -37,3 +39,20 @@ export const findMissingProps = (
     if (!(prop.toLocaleLowerCase() in presentProperties)) arr.push(prop);
     return arr;
   }, []);
+
+export const getPortletId = (rootNode: Element) => {
+  let node: Element | null = rootNode;
+
+  while (
+    node &&
+    node?.nodeName !== "SECTION" &&
+    !node.classList.contains("portlet")
+  ) {
+    node = node?.parentElement;
+  }
+
+  return node?.getAttribute("id") || "";
+};
+
+export const getRemoteAppEntryId = (portletId: string) =>
+  portletId.replace(`${REMOTE_APP_PORTLET_KEY}_`, "");
