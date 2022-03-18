@@ -1,4 +1,5 @@
 import React, { ReactNode, useState, VFC } from "react";
+import { BrowserRouter } from "react-router-dom";
 import { getAppRootElement } from "../utils";
 
 type Props = {
@@ -12,7 +13,7 @@ const LiferayProvider: VFC<Props> = (props) => {
         getAppRootElement(elementId)
     );
 
-    return <>{children}</>;
+    return <BrowserRouter>{children}</BrowserRouter>;
 };
 
 export default LiferayProvider;
