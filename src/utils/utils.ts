@@ -27,16 +27,25 @@ export const getAppProperties = (rootElement: Element) =>
 const toAttrObj =
   (rootElement: Element) => (attrObj: Attributes, attrName: string) => {
     const attrValue = rootElement.getAttribute(attrName);
-    if (attrValue) attrObj[attrName] = attrValue;
+
+    if (attrValue) attrObj[kebabToCamel(attrName)] = attrValue;
     return attrObj;
   };
+
+const kebabToCamel = (kebabString: string) =>
+  kebabString
+    .split("-")
+    .map((word, i) =>
+      i >= 1 ? word[0].toUpperCase() + word.substring(1, word.length) : word
+    )
+    .join("");
 
 export const findMissingProps = (
   requiredProperties: string[],
   presentProperties: Attributes
 ) =>
   requiredProperties.reduce((arr: string[], prop) => {
-    if (!(prop.toLocaleLowerCase() in presentProperties)) arr.push(prop);
+    if (!(prop in presentProperties)) arr.push(prop);
     return arr;
   }, []);
 
