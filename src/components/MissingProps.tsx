@@ -5,6 +5,9 @@ type Props = {
     missingProps: string[];
 }
 
+/**
+ * A component rendering a UI error message explaining which properties are missing.
+ */
 const MissingProps = (props: Props) => {
     const { requiredProperties, missingProps } = props;
     return (

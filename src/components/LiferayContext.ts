@@ -1,10 +1,10 @@
 import React, { createContext } from "react";
-import { Attributes } from "../utils";
+import { Properties } from "../utils/interfaces";
 
 export interface AppContext {
   portletId: string;
   remoteAppEntryId: string;
-  properties: Attributes;
+  properties: Properties;
   elementId: string;
 }
 
