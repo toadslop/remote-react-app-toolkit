@@ -44,7 +44,7 @@ export const findMissingProps = (
   requiredProperties: string[],
   presentProperties: Attributes
 ) =>
-  requiredProperties.reduce((arr: string[], prop) => {
+  requiredProperties.map(kebabToCamel).reduce((arr: string[], prop) => {
     if (!(prop in presentProperties)) arr.push(prop);
     return arr;
   }, []);
@@ -56,9 +56,8 @@ export const getPortletId = (rootNode: Element) => {
     node &&
     node?.nodeName !== "SECTION" &&
     !node.classList.contains("portlet")
-  ) {
+  )
     node = node?.parentElement;
-  }
 
   return node?.getAttribute("id") || "";
 };
